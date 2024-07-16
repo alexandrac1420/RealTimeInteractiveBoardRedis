@@ -224,10 +224,10 @@ Follow these steps to deploy the application on AWS:
 5. Verify the deployment
 
     Check the application's availability using the public DNS of the EC2 instance on port 8443, e.g.,
-   ![image](https://github.com/user-attachments/assets/317e2669-b024-4cd8-9ebc-58a37756a68e)
-   ![image](https://github.com/user-attachments/assets/83a39d9b-fd43-425f-8d67-74622977442d)
-   ![image](https://github.com/user-attachments/assets/ea36b151-06ce-4ff4-a84d-5abc3af907e8)
-   ![image](https://github.com/user-attachments/assets/892902f1-f831-4225-9110-40646780cf1d)
+    ![image](https://github.com/user-attachments/assets/6868a796-e3d3-4254-a2cb-db2caa3ba3fd)
+    ![image](https://github.com/user-attachments/assets/0a9a809f-aa5f-41b4-b2ce-e658233cf892)
+    ![image](https://github.com/user-attachments/assets/6d6e5d85-abfa-470a-88bd-18e49936f2d2)
+    ![image](https://github.com/user-attachments/assets/f53742a3-c846-4c16-a58c-564f49134448)
 
 
 ## Built With
