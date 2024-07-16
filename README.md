@@ -188,6 +188,7 @@ DrawingServiceController is a REST controller handling incoming HTTP requests:
 The application uses Redis for session management and ticket-based authorization to enhance security and performance:
 
 **Features:**
+- **Redis Configuration**: Managed by `RedisConfig`, which sets up the connection to the Redis server using LettuceConnectionFactory. It retrieves connection parameters from `application.properties`.
 - Stores session data in Redis to manage user sessions efficiently.
 - Utilizes ticket-based authorization for secure WebSocket connections, ensuring that only authorized users can interact with the drawing board.
 
