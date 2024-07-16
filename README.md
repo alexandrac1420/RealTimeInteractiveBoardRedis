@@ -84,14 +84,12 @@ You need to install the following tools and configure their dependencies:
 
 1. Clone the repository and navigate into the project directory:
     ```sh
-    git clone https://github.com/alexandrac1420/RealTimeInteractiveBoard.git
-
-    cd BoardWebSocket
+    https://github.com/alexandrac1420/RealTimeInteractiveBoardRedis
+    cd BoardWebSocketRedis1
     ```
 
 2. Build the Spring Boot backend:
     ```sh
-    cd demo
     mvn package
     ```
 
@@ -118,6 +116,13 @@ To run the backend and frontend, follow these steps:
     ```
 
     The backend will start on `https://localhost:8443`, and it will store the drawing board's data (i.e., the points that are drawn) and session information in Redis.
+
+   ![image](https://github.com/user-attachments/assets/d8fa60cd-37c5-4a14-9d13-07eeb359c477)
+   ![image](https://github.com/user-attachments/assets/ee717d4e-0ac1-4abc-9fc0-28286c622174)
+   ![image](https://github.com/user-attachments/assets/611c38d7-09eb-4988-911b-c73f46bb0fac)
+
+
+
 
 ## Architectural Design
 
@@ -216,7 +221,7 @@ Follow these steps to deploy the application on AWS:
 
 5. Verify the deployment
 
-    Check the application's availability using the public DNS of the EC2 instance on port 8080, e.g.,
+    Check the application's availability using the public DNS of the EC2 instance on port 8443, e.g.,
     ![alt text](image.png)
 
 ## Built With
@@ -230,7 +235,7 @@ Follow these steps to deploy the application on AWS:
 
 ## Versioning
 
-I use [GitHub](https://github.com/) for versioning. For the versions available, see the [tags on this repository](https://github.com/alexandrac1420/MultiUserBoard).
+I use [GitHub](https://github.com/) for versioning. For the versions available, see the [tags on this repository](https://github.com/alexandrac1420/RealTimeInteractiveBoardRedis).
 
 ## Authors
 
