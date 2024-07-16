@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome!</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f3e5f5; /* Fondo lila claro */
+            color: #4a148c; /* Texto color lila oscuro */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            text-align: center;
+            background: #e1bee7; /* Fondo lila medio */
+            border: 2px solid #ba68c8; /* Borde lila */
+            border-radius: 10px;
+            padding: 2rem;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: #6a1b9a; /* Color del título */
+        }
+        p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+        a {
+            display: inline-block;
+            margin: 0.5rem;
+            padding: 0.5rem 1rem;
+            font-size: 1rem;
+            color: #fff;
+            background-color: #8e24aa; /* Fondo de los botones */
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+        }
+        a:hover {
+            background-color: #6a1b9a; /* Fondo de los botones al pasar el ratón */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Welcome!</h1>
+        <p>Ingrese su usuario para empezar a dibujar con tus amigos en tiempo real</p>
+        <a th:href="@{/login}">Ingresa</a>
+        <a th:href="@{/signin}">Registrate</a>
+    </div>
+</body>
+</html>
