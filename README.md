@@ -1,7 +1,7 @@
 # Interactive Drawing Board with Real-Time WebSocket Communication
 
 An interactive drawing board developed with React and Spring Boot that allows multiple users to draw on a shared board in real-time using WebSockets and Redis for session management and ticket-based authorization.
-![Demo GIF](https://github.com/alexandrac1420/MultiUserBoard/blob/master/Dise%C3%B1o%20sin%20t%C3%ADtulo.gif)
+![Demo GIF](https://github.com/alexandrac1420/RealTimeInteractiveBoardRedis/blob/master/Pictures/Dise%C3%B1o%20sin%20t%C3%ADtulo.gif)
 
 ## Getting Started
 
@@ -78,7 +78,7 @@ You need to install the following tools and configure their dependencies:
     CONTAINER ID   IMAGE     COMMAND                  CREATED         STATUS         PORTS                     NAMES
     e7e2f46385d1   redis     "docker-entrypoint.s…"   2 minutes ago   Up 2 minutes   0.0.0.0:45000->6379/tcp   some-redis
     ```
-    ![alt text](image.png)
+    ![alt text](https://github.com/alexandrac1420/RealTimeInteractiveBoardRedis/blob/master/Pictures/image.png)
 
 ### Installing
 
