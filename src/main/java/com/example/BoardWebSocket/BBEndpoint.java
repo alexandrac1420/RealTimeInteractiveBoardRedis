@@ -20,7 +20,7 @@ public class BBEndpoint {
     /* Queue for all open WebSocket sessions */
     static Queue<Session> queue = new ConcurrentLinkedQueue<>();
     Session ownSession = null;
-    private boolean accepted = false;
+    boolean accepted = false;
     TicketRepository ticketRepo = (TicketRepository) BBApplicationContextAware.getApplicationContext()
             .getBean("ticketRepository");
 

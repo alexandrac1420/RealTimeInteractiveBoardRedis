@@ -34,7 +34,4 @@ public class TicketRepository {
         return (isValid > 0l);
     }
 
-    private void eviction() {
-        // Delete tickets after timout or include this functionality in checkticket
-    }
 }
