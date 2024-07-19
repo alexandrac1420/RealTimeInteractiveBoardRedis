@@ -62,6 +62,7 @@ You need to install the following tools and configure their dependencies:
     Should return something like:
     ```sh
     Docker version 20.10.7, build f0df350
+    ```
 
 5. **Redis (via Docker)**
     - Run Redis in a Docker container:
@@ -84,7 +85,7 @@ You need to install the following tools and configure their dependencies:
 
 1. Clone the repository and navigate into the project directory:
     ```sh
-    https://github.com/alexandrac1420/RealTimeInteractiveBoardRedis
+    git clone https://github.com/alexandrac1420/RealTimeInteractiveBoardRedis
     cd BoardWebSocketRedis1
     ```
 
@@ -121,13 +122,9 @@ To run the backend and frontend, follow these steps:
    ![image](https://github.com/user-attachments/assets/ee717d4e-0ac1-4abc-9fc0-28286c622174)
    ![image](https://github.com/user-attachments/assets/611c38d7-09eb-4988-911b-c73f46bb0fac)
 
-
-
-
 ## Architectural Design
 
 ![image](https://github.com/user-attachments/assets/d9d8271b-ee93-4747-a725-32ac669c1f4d)
-
 
 ### BBCanvas Component (React)
 
@@ -191,6 +188,147 @@ The application uses Redis for session management and ticket-based authorization
 - **Redis Configuration**: Managed by `RedisConfig`, which sets up the connection to the Redis server using LettuceConnectionFactory. It retrieves connection parameters from `application.properties`.
 - Stores session data in Redis to manage user sessions efficiently.
 - Utilizes ticket-based authorization for secure WebSocket connections, ensuring that only authorized users can interact with the drawing board.
+
+## Testing
+
+The project uses JaCoCo for code coverage and SonarQube for continuous inspection. The code coverage is maintained above 85%. 
+
+### Test Cases
+
+1. **WebSecurityConfigTest**
+   - **Purpose**: Validates the application's security configuration.
+   - **Tests**:
+     - `accessToUnsecuredEndpointShouldBeAllowed()`: Ensures that unsecured endpoints are accessible.
+     - `accessToSecuredEndpointShouldRequireAuthentication()`: Verifies that secured endpoints require authentication.
+     - `loginWithValidCredentialsShouldSucceed()`: Tests successful login with valid credentials.
+     - `logoutShouldInvalidateSession()`: Ensures that logout invalidates the session.
+
+2. **TicketRepositoryTest**
+   - **Purpose**: Tests the functionality of the `TicketRepository` class.
+   - **Tests**:
+     - `testGetTicket()`: Checks ticket generation and retrieval.
+     - `testCheckTicketValid()`: Validates the checking of a valid ticket.
+     - `testCheckTicketInvalid()`: Validates the checking of an invalid ticket.
+
+3. **DrawingServiceControllerTest**
+   - **Purpose**: Tests the `DrawingServiceController` class.
+   - **Tests**:
+     - `testStatus()`: Verifies the status endpoint response.
+     - `testGetTicket()`: Tests ticket retrieval through the controller.
+
+### SonarQube Integration
+
+To ensure code quality and coverage, SonarQube is integrated into the project:
+
+1. **Setup SonarQube**:
+   - Pull the SonarQube Docker image and run it:
+     ```sh
+     docker pull sonarqube
+     docker run -d -p 9000:9000 --name sonarqube sonarqube
+     ```
+   - Access SonarQube at `http://localhost:9000` and log in with the default credentials (`admin`/`admin`).
+
+2. **Configure Maven**:
+   - Add the SonarQube plugin to your `pom.xml`:
+     ```xml
+     <build>
+       <plugins>
+         <plugin>
+           <groupId>org.sonarsource.scanner.maven</groupId>
+           <artifactId>sonar-maven-plugin</artifactId>
+           <version>3.9.1.2184</version>
+         </plugin>
+       </plugins>
+     </build>
+     ```
+
+3. **Run SonarQube Analysis**:
+   - Use the following Maven command to perform SonarQube analysis:
+     ```sh
+     mvn verify sonar:sonar -D sonar.token=<your-sonar-token>
+     ```
+
+   Replace `<your-sonar-token>` with the token generated from the SonarQube interface.
+
+4. **View Results**:
+   - After the analysis is complete, view the results in the SonarQube dashboard. The analysis results include code quality metrics, security issues, and code coverage details.
+
+### JaCoCo Integration
+
+JaCoCo is used for code coverage reporting:
+
+1. **Add JaCoCo Plugin**:
+   - Add the JaCoCo plugin to your `pom.xml`:
+     ```xml
+     <build>
+       <plugin>
+                <groupId>org.jacoco</groupId>
+                <artifactId>jacoco-maven-plugin</artifactId>
+                <version>0.8.12</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>prepare-agent</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>report</id>
+                        <phase>test</phase>
+                        <goals>
+                            <goal>report</goal>
+                        </goals>
+                        <configuration>
+                            <excludes>
+                                <exclude>**/BBConfigurator.class</exclude>
+								<exclude>**/MvcConfig.class</exclude>
+								<exclude>**/BBAppStarter.class</exclude>
+								<exclude>**/BBEndpoint.class</exclude>
+								<exclude>**/RedisConfig.class</exclude>
+								<exclude>**/WebSecurityConfig.class</exclude>
+                         </excludes>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>jacoco-check</id>
+                        <goals>
+                            <goal>check</goal>
+                        </goals>
+                        <configuration>
+                            <rules>
+                                <rule>
+                                    <element>PACKAGE</element>
+									<excludes>
+										<exclude>**/BBConfigurator.class</exclude>
+										<exclude>**/MvcConfig.class</exclude>
+										<exclude>**/BBAppStarter.class</exclude>
+										<exclude>**/BBEndpoint.class</exclude>
+										<exclude>**/RedisConfig.class</exclude>
+										<exclude>**/WebSecurityConfig.class</exclude>
+									</excludes>
+                                    <limits>
+                                        <limit>
+                                            <counter>CLASS</counter>
+                                            <value>COVEREDRATIO</value>
+                                            <minimum>0.85</minimum><!--Porcentaje mínimo de cubrimiento para construir el proyecto-->
+                                        </limit>
+                                    </limits>
+                                </rule>
+                            </rules>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+     </build>
+     ```
+
+2. **Generate Coverage Report**:
+   - Run Maven to generate the coverage report:
+     ```sh
+     mvn clean verify
+     ```
+
+   - View the generated coverage report at `target/site/jacoco/index.html`.
+
 
 ## Deployment on AWS
 

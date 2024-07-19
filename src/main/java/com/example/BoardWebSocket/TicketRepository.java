@@ -18,7 +18,7 @@ public class TicketRepository {
     // inject the template as ListOperations
     @Resource(name = "stringRedisTemplate")
     private ListOperations<String, String> listTickets;
-    private int ticketnumber;
+    int ticketnumber;
 
     public TicketRepository() {
     }
