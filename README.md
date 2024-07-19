@@ -193,6 +193,8 @@ The application uses Redis for session management and ticket-based authorization
 
 The project uses JaCoCo for code coverage and SonarQube for continuous inspection. The code coverage is maintained above 85%. 
 
+
+
 ### Test Cases
 
 1. **WebSecurityConfigTest**
@@ -226,7 +228,12 @@ To ensure code quality and coverage, SonarQube is integrated into the project:
      docker pull sonarqube
      docker run -d -p 9000:9000 --name sonarqube sonarqube
      ```
+     ![image](https://github.com/user-attachments/assets/90e56266-373d-455d-b577-f663a43bb6a8)
+
    - Access SonarQube at `http://localhost:9000` and log in with the default credentials (`admin`/`admin`).
+
+     ![image](https://github.com/user-attachments/assets/5558e6e9-c61b-466d-92ae-4d197963ecb2)
+
 
 2. **Configure Maven**:
    - Add the SonarQube plugin to your `pom.xml`:
@@ -249,9 +256,12 @@ To ensure code quality and coverage, SonarQube is integrated into the project:
      ```
 
    Replace `<your-sonar-token>` with the token generated from the SonarQube interface.
+   
 
-4. **View Results**:
+5. **View Results**:
    - After the analysis is complete, view the results in the SonarQube dashboard. The analysis results include code quality metrics, security issues, and code coverage details.
+     ![image](https://github.com/user-attachments/assets/abecbb39-24f6-4929-9573-c5334c5a3e03)
+
 
 ### JaCoCo Integration
 
@@ -280,11 +290,11 @@ JaCoCo is used for code coverage reporting:
                         <configuration>
                             <excludes>
                                 <exclude>**/BBConfigurator.class</exclude>
-								<exclude>**/MvcConfig.class</exclude>
-								<exclude>**/BBAppStarter.class</exclude>
-								<exclude>**/BBEndpoint.class</exclude>
-								<exclude>**/RedisConfig.class</exclude>
-								<exclude>**/WebSecurityConfig.class</exclude>
+				<exclude>**/MvcConfig.class</exclude>
+				<exclude>**/BBAppStarter.class</exclude>
+				<exclude>**/BBEndpoint.class</exclude>
+				<exclude>**/RedisConfig.class</exclude>
+				<exclude>**/WebSecurityConfig.class</exclude>
                          </excludes>
                         </configuration>
                     </execution>
@@ -297,14 +307,14 @@ JaCoCo is used for code coverage reporting:
                             <rules>
                                 <rule>
                                     <element>PACKAGE</element>
-									<excludes>
-										<exclude>**/BBConfigurator.class</exclude>
-										<exclude>**/MvcConfig.class</exclude>
-										<exclude>**/BBAppStarter.class</exclude>
-										<exclude>**/BBEndpoint.class</exclude>
-										<exclude>**/RedisConfig.class</exclude>
-										<exclude>**/WebSecurityConfig.class</exclude>
-									</excludes>
+					<excludes>
+						<exclude>**/BBConfigurator.class</exclude>
+						<exclude>**/MvcConfig.class</exclude>
+						<exclude>**/BBAppStarter.class</exclude>
+						<exclude>**/BBEndpoint.class</exclude>
+						<exclude>**/RedisConfig.class</exclude>
+						<exclude>**/WebSecurityConfig.class</exclude>
+					</excludes>
                                     <limits>
                                         <limit>
                                             <counter>CLASS</counter>
@@ -328,7 +338,7 @@ JaCoCo is used for code coverage reporting:
      ```
 
    - View the generated coverage report at `target/site/jacoco/index.html`.
-
+     ![image](https://github.com/user-attachments/assets/e377a7a5-3889-4316-aedc-df503988ea48)
 
 ## Deployment on AWS
 
