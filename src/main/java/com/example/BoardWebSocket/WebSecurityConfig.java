@@ -1,4 +1,4 @@
-package com.example.BoardWebSocket;
+package com.example.boardwebsocket;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -14,35 +14,36 @@ import org.springframework.security.web.SecurityFilterChain;
 @EnableWebSecurity
 public class WebSecurityConfig {
 
-	@Bean
-	public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-		http
-			.authorizeHttpRequests((requests) -> requests
-				.requestMatchers( "/index").permitAll()
-				.anyRequest().authenticated()
-			)
-			.formLogin((form) -> form
-				.loginPage("/login")
-				.permitAll()
-			)
-			.logout((logout) -> logout.permitAll());
+    @Bean
+    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+        http
+                .authorizeHttpRequests((requests) -> requests
+                        .requestMatchers("/index").permitAll()
+                        .anyRequest().authenticated())
+                .formLogin((form) -> form
+                        .loginPage("/login")
+                        .permitAll())
+                .logout((logout) -> logout.permitAll());
 
-		return http.build();
-	}
+        return http.build();
+    }
 
-	@Bean
+    @Bean
     public UserDetailsService userDetailsService() {
+        String password1 = System.getenv("USER1_PASSWORD");
+        String password2 = System.getenv("USER2_PASSWORD");
+
         UserDetails user1 = User.withDefaultPasswordEncoder()
-                                .username("user1")
-                                .password("password1")
-                                .roles("USER")
-                                .build();
+                .username("user1")
+                .password(password1)
+                .roles("USER")
+                .build();
 
         UserDetails user2 = User.withDefaultPasswordEncoder()
-                                .username("user2")
-                                .password("password2")
-                                .roles("USER")
-                                .build();
+                .username("user2")
+                .password(password2)
+                .roles("USER")
+                .build();
 
         // Crear un InMemoryUserDetailsManager y añadir los usuarios
         InMemoryUserDetailsManager userDetailsManager = new InMemoryUserDetailsManager();

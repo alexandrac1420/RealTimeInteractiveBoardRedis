@@ -1,4 +1,4 @@
-package com.example.BoardWebSocket;
+package com.example.boardwebsocket;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;

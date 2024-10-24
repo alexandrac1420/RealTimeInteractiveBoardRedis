@@ -1,4 +1,4 @@
-package com.example.BoardWebSocket;
+package com.example.boardwebsocket;
 
 import java.util.Collections;
 

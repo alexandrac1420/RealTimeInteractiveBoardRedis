@@ -1,4 +1,4 @@
-package com.example.BoardWebSocket;
+package com.example.boardwebsocket;
 
 import org.apache.hc.client5.http.impl.classic.CloseableHttpClient;
 import org.apache.hc.client5.http.impl.classic.HttpClients;

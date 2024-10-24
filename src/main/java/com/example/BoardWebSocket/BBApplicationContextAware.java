@@ -1,4 +1,4 @@
-package com.example.BoardWebSocket;
+package com.example.boardwebsocket;
 
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
@@ -10,14 +10,14 @@ import org.springframework.stereotype.Component;
 // Inidica que el bean debe ser cargado de forma inmediata 
 @Lazy(false)
 public class BBApplicationContextAware implements ApplicationContextAware {
-    private static ApplicationContext APPLICATION_CONTEXT;
+    private static ApplicationContext applicationContext;
 
     @Override
     public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
-        APPLICATION_CONTEXT = applicationContext;
+        this.applicationContext = applicationContext;
     }
 
     public static ApplicationContext getApplicationContext() {
-        return APPLICATION_CONTEXT;
+        return applicationContext;
     }
 }
