@@ -24,7 +24,6 @@ public class BBEndpoint {
     TicketRepository ticketRepo = (TicketRepository) BBApplicationContextAware.getApplicationContext()
             .getBean("ticketRepository");
 
-
     /* Call this method to send a message to all clients */
     public void send(String msg) {
         try {
@@ -40,7 +39,6 @@ public class BBEndpoint {
         }
     }
 
-    
     @OnMessage
     public void processPoint(String message, Session session) {
         if (accepted) {
@@ -82,7 +80,12 @@ public class BBEndpoint {
     public void error(Session session, Throwable t) {
         /* Remove this connection from the queue */
         queue.remove(session);
-        logger.log(Level.INFO, t.toString());
+        if (t != null) {
+            logger.log(Level.INFO, t.toString());
+        } else {
+            logger.log(Level.INFO, "An unknown error occurred.");
+        }
         logger.log(Level.INFO, "Connection error.");
     }
+
 }

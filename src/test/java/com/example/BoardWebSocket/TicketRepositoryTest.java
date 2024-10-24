@@ -13,7 +13,7 @@ import org.springframework.data.redis.core.ListOperations;
 import org.springframework.data.redis.core.RedisOperations;
 import org.springframework.data.redis.core.StringRedisTemplate;
 
-public class TicketRepositoryTest {
+class TicketRepositoryTest {
 
     @InjectMocks
     private TicketRepository ticketRepository;
@@ -40,7 +40,7 @@ public class TicketRepositoryTest {
     }
 
     @Test
-    public void testGetTicket() {
+    void testGetTicket() {
         Integer ticket = ticketRepository.getTicket();
         assertEquals(0, ticket);
         verify(listTickets, times(1)).leftPush("ticketStore", "0");
@@ -51,7 +51,7 @@ public class TicketRepositoryTest {
     }
 
     @Test
-    public void testCheckTicketValid() {
+    void testCheckTicketValid() {
         when(boundListOperations.remove(0, "0")).thenReturn(1L);
         boolean isValid = ticketRepository.checkTicket("0");
         assertTrue(isValid);
@@ -59,7 +59,7 @@ public class TicketRepositoryTest {
     }
 
     @Test
-    public void testCheckTicketInvalid() {
+    void testCheckTicketInvalid() {
         when(boundListOperations.remove(0, "1")).thenReturn(0L);
         boolean isValid = ticketRepository.checkTicket("1");
         assertFalse(isValid);

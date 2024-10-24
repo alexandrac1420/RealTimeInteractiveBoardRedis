@@ -1,26 +1,25 @@
 package com.example.boardwebsocket;
 
-import java.util.List;
-import java.util.concurrent.CopyOnWriteArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+
 import jakarta.annotation.Resource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.ListOperations;
-import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Component;
 
 @Component
 public class TicketRepository {
-    @Autowired
-    private StringRedisTemplate template;
+    private final StringRedisTemplate template;
+
+
     // inject the template as ListOperations
     @Resource(name = "stringRedisTemplate")
     private ListOperations<String, String> listTickets;
     int ticketnumber;
 
-    public TicketRepository() {
+    @Autowired
+    public TicketRepository(StringRedisTemplate template) {
+        this.template = template;
     }
 
     public synchronized Integer getTicket() {

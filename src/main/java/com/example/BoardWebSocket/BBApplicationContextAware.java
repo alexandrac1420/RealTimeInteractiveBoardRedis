@@ -14,7 +14,7 @@ public class BBApplicationContextAware implements ApplicationContextAware {
 
     @Override
     public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
-        this.applicationContext = applicationContext;
+        BBApplicationContextAware.applicationContext = applicationContext;
     }
 
     public static ApplicationContext getApplicationContext() {

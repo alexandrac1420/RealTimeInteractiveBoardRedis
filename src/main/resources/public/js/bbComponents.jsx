@@ -5,8 +5,6 @@ function BBCanvas() {
     const comunicationWS = React.useRef(null);
     const myp5 = React.useRef(null);
     const sketch = function (p) {
-        let x = 100;
-        let y = 100;
         p.setup = function () {
             p.createCanvas(700, 410);
         }
@@ -26,7 +24,7 @@ function BBCanvas() {
         setSvrStatus({ loadingState: 'Canvas Loaded' });
         comunicationWS.current = new WSBBChannel(BBServiceURL(),
             (msg) => {
-                var obj = JSON.parse(msg);
+                let obj = JSON.parse(msg);
                 console.log("On func call back ", msg);
                 drawPoint(obj.x, obj.y);
             });
@@ -61,6 +59,11 @@ function Editor({ name }
         </div>
     );
 }
+// Definir los tipos de propiedades esperadas
+Editor.propTypes = {
+    name: PropTypes.string.isRequired,  // Asegurarse de que 'name' sea una cadena y es requerida
+};
+
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
     <Editor name="Alexandra" />
@@ -69,28 +72,28 @@ root.render(
 
 // Retorna la url del servicio. Es una función de configuración.
 function BBServiceURL() {
-    var url = WShostURL() + '/bbService';
+    let url = WShostURL() + '/bbService';
     console.log("BBService URL Calculada: " + url);
     return url;
 }
 // Retorna la url del servicio. Es una función de configuración.
 function ticketServiceURL() {
-    var url = RESThostURL() + '/getticket';
+    let url = RESThostURL() + '/getticket';
     console.log("ticketService URL Calculada: " + url);
     return url;
 }
 // Retorna la url del servicio. Es una función de configuración.
 function WShostURL() {
-    var host = window.location.host;
-    var url = 'wss://' + (host);
+    let host = window.location.host;
+    let url = 'wss://' + (host);
     console.log("host URL Calculada: " + url);
     return url;
 }
 // Retorna la url del servicio. Es una función de configuración.
 function RESThostURL() {
-    var host = window.location.host;
-    var protocol = window.location.protocol;
-    var url = protocol + '//' + (host);
+    let host = window.location.host;
+    let protocol = window.location.protocol;
+    let url = protocol + '//' + (host);
     console.log("host URL Calculada: " + url);
     return url;
 }
@@ -112,8 +115,8 @@ class WSBBChannel {
     }
     async onOpen(evt) {
         console.log("In onOpen", evt);
-        var response = await getTicket();
-        var json;
+        let response = await getTicket();
+        let json;
         if (response.ok) {
             // // if HTTP-status is 200-299
             // get the response body (the method explained below)
